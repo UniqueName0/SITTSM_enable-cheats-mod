@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using HarmonyLib;
 using UnityEngine;
 using System;
@@ -30,6 +30,16 @@ namespace enable_cheats
         {
             __result = true;
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerManager), "SetUpPlayers")]
+    public class Is2player_patch
+    {
+        public static bool Prefix(ref bool __test2Players)
+        {
+            __test2Players = false;
+            return true;
         }
     }
 }
